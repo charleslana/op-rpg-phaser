@@ -119,26 +119,26 @@ export class PreloadScene extends Phaser.Scene {
   }
 
   private loadAssets(): void {
-    this.load.image(battleBackground1, './assets/battle-bg/1.png');
+    this.load.image(battleBackground1, './assets/images/battle-bg/1.png');
     this.load.atlas(
       aokijiIdle,
-      './assets/characters/Aokiji/idle.png',
-      './assets/characters/Aokiji/idle.json'
+      './assets/images/characters/Aokiji/idle.png',
+      './assets/images/characters/Aokiji/idle.json'
     );
     this.load.atlas(
       aokijiRun,
-      './assets/characters/Aokiji/run.png',
-      './assets/characters/Aokiji/run.json'
+      './assets/images/characters/Aokiji/run.png',
+      './assets/images/characters/Aokiji/run.json'
     );
     this.load.atlas(
       aokijiAttackMelee,
-      './assets/characters/Aokiji/attack_melee.png',
-      './assets/characters/Aokiji/attack_melee.json'
+      './assets/images/characters/Aokiji/attack_melee.png',
+      './assets/images/characters/Aokiji/attack_melee.json'
     );
     this.load.atlas(
       pirateIdle,
-      './assets/characters/pirate/idle.png',
-      './assets/characters/pirate/idle.json'
+      './assets/images/characters/pirate/idle.png',
+      './assets/images/characters/pirate/idle.json'
     );
   }
 }

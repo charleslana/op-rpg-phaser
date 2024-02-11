@@ -1,4 +1,5 @@
 import * as Phaser from 'phaser';
+import { Damage } from '../components/Damage';
 import { getCharacterAnimation } from '../utils/character-utils';
 import { IAnimation } from '../interface/IAnimation';
 import { IBattleCharacter } from '../interface/IBattleCharacter';
@@ -13,6 +14,7 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
   public sprite: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
   public slot: number;
   public statusBar: StatusBar;
+  public damage: Damage;
 
   private characterAnimation: ICharacterAnimation;
 
@@ -68,9 +70,11 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
     });
   }
 
-  public createStatusBar(isFlip = false): void {
+  public createCharacterInfo(isFlip = false): void {
     this.statusBar = new StatusBar(this.scene, this.sprite);
     this.statusBar.createStatusBarContainer(isFlip);
+    this.damage = new Damage(this.scene, this.sprite);
+    this.damage.createDamageText(isFlip);
   }
 
   private setupSprite(isFlip = false): void {

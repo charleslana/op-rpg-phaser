@@ -101,6 +101,7 @@ export class BattleScene extends Phaser.Scene {
         this.time.delayedCall(duration / this.speed, () => {
           this.enemy.blinkSprite(this.speed);
           this.enemy.statusBar.updateHPWithAnimation(50, 200, this.speed);
+          this.enemy.damage.changeTextAndAnimate('-75', this.speed);
           this.player.changeRunAnimation(this.speed);
           this.player.sprite.setFlipX(true);
           this.playerReturnToStartPosition();
@@ -213,7 +214,7 @@ export class BattleScene extends Phaser.Scene {
         if (i === player.slot) {
           player.setPosition(x, y);
           player.sprite.setPosition(x, y);
-          player.createStatusBar();
+          player.createCharacterInfo();
         }
       });
     }
@@ -244,7 +245,7 @@ export class BattleScene extends Phaser.Scene {
         if (i === enemy.slot) {
           enemy.setPosition(x, y);
           enemy.sprite.setPosition(x, y);
-          enemy.createStatusBar(true);
+          enemy.createCharacterInfo(true);
         }
       });
     }
