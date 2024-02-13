@@ -15,6 +15,7 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
   public slot: number;
   public statusBar: StatusBar;
   public damage: Damage;
+  public spriteObject: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
 
   private characterAnimation: ICharacterAnimation;
 
@@ -52,6 +53,36 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
     this.setupSprite();
     this.updateAnimationSpeed(speed);
     return this.sprite.anims.currentAnim!.duration;
+  }
+
+  public changeAttackRangedAnimation(speed: number): number {
+    this.sprite.anims.play(this.characterAnimation.attackRanged!.key);
+    this.setupSprite();
+    this.updateAnimationSpeed(speed);
+    return this.sprite.anims.currentAnim!.duration;
+  }
+
+  public enableAttackRangedObjectAnimation(speed: number, isFlip = false): number {
+    this.spriteObject = this.scene.physics.add.sprite(
+      this.x,
+      this.y + this.characterAnimation.attackRangedObject!.positionY!,
+      this.characterAnimation.attackRangedObject!.key
+    );
+    this.spriteObject.anims.play(this.characterAnimation.attackRangedObject!.key);
+    this.spriteObject.setCollideWorldBounds(true);
+    if (isFlip) {
+      this.spriteObject.setOrigin(0, 1);
+    } else {
+      this.spriteObject.setOrigin(1, 1);
+    }
+    this.spriteObject.setFlipX(isFlip);
+    this.sprite.setDepth(1);
+    const currentAnimation = this.spriteObject.anims.currentAnim as IAnimation;
+    if (currentAnimation) {
+      currentAnimation.frameRate = currentAnimation.frameRateStart * speed;
+      this.spriteObject.anims.play(currentAnimation.key);
+    }
+    return this.spriteObject.anims.currentAnim!.duration;
   }
 
   public blinkSprite(speed: number): void {
@@ -95,6 +126,8 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
     this.createIdleAnimation(characterAnimation);
     this.createRunAnimation(characterAnimation);
     this.createAttackMeleeAnimation(characterAnimation);
+    this.createAttackRangedAnimation(characterAnimation);
+    this.createAttackRangedObjectAnimation(characterAnimation);
   }
 
   private createIdleAnimation(characterAnimation: ICharacterAnimation): void {
@@ -136,6 +169,38 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
         yoyo: characterAnimation.attackMelee.yoyo,
       }) as IAnimation;
       attackMelee.frameRateStart = characterAnimation.attackMelee.frameRateStart!;
+    }
+  }
+
+  private createAttackRangedAnimation(characterAnimation: ICharacterAnimation): void {
+    if (
+      characterAnimation.attackRanged &&
+      !this.scene.anims.exists(characterAnimation.attackRanged.key)
+    ) {
+      const attackMelee = this.scene.anims.create({
+        key: characterAnimation.attackRanged.key,
+        frames: characterAnimation.attackRanged.frames,
+        frameRate: characterAnimation.attackRanged.frameRate,
+        repeat: characterAnimation.attackRanged.repeat,
+        yoyo: characterAnimation.attackRanged.yoyo,
+      }) as IAnimation;
+      attackMelee.frameRateStart = characterAnimation.attackRanged.frameRateStart!;
+    }
+  }
+
+  private createAttackRangedObjectAnimation(characterAnimation: ICharacterAnimation): void {
+    if (
+      characterAnimation.attackRangedObject &&
+      !this.scene.anims.exists(characterAnimation.attackRangedObject.key)
+    ) {
+      const attackMelee = this.scene.anims.create({
+        key: characterAnimation.attackRangedObject.key,
+        frames: characterAnimation.attackRangedObject.frames,
+        frameRate: characterAnimation.attackRangedObject.frameRate,
+        repeat: characterAnimation.attackRangedObject.repeat,
+        yoyo: characterAnimation.attackRangedObject.yoyo,
+      }) as IAnimation;
+      attackMelee.frameRateStart = characterAnimation.attackRangedObject.frameRateStart!;
     }
   }
 }

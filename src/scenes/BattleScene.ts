@@ -53,6 +53,15 @@ export class BattleScene extends Phaser.Scene {
     this.input.keyboard!.on('keydown-THREE', () => {
       this.player.changeAttackMeleeAnimation(this.speed);
     });
+    this.input.keyboard!.on('keydown-FOUR', () => {
+      this.player.changeAttackRangedAnimation(this.speed);
+    });
+    this.input.keyboard!.on('keydown-FIVE', () => {
+      this.player.enableAttackRangedObjectAnimation(this.speed);
+    });
+    this.input.keyboard!.on('keydown-SIX', () => {
+      this.moveObjectToEnemy();
+    });
     this.input.keyboard!.on('keydown-R', () => {
       this.scene.restart();
     });
@@ -138,6 +147,35 @@ export class BattleScene extends Phaser.Scene {
       },
     };
     this.tweens.add(tweenConfig);
+  }
+
+  private moveObjectToEnemy(): void {
+    const dodge = false;
+    const duration = this.player.changeAttackRangedAnimation(this.speed);
+    this.player.enableAttackRangedObjectAnimation(this.speed);
+    this.time.delayedCall(duration / this.speed, () => {
+      const destinationX = this.enemy.x + this.enemy.width * 2;
+      const tweenConfig: Phaser.Types.Tweens.TweenBuilderConfig = {
+        targets: this.player.spriteObject,
+        x: destinationX,
+        y: this.enemy.y,
+        duration: 500 / this.speed,
+        onComplete: () => {
+          this.player.spriteObject.setDepth(2);
+          if (!dodge) {
+            this.enemy.blinkSprite(this.speed);
+            this.enemy.statusBar.updateHPWithAnimation(50, 200, this.speed);
+            this.enemy.damage.changeDamageText('-75', this.speed);
+            this.enemy.damage.enableCriticalText(this.speed);
+          } else {
+            this.enemy.damage.enableDodgeText(this.speed);
+          }
+          this.player.spriteObject.destroy();
+          this.player.changeIdleAnimation(this.speed);
+        },
+      };
+      this.tweens.add(tweenConfig);
+    });
   }
 
   private createChangeSpeedButton(): void {

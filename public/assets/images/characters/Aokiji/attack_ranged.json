@@ -1,0 +1,166 @@
+{
+	"textures": [
+		{
+			"image": "attack_ranged",
+			"format": "RGBA8888",
+			"size": {
+				"w": 298,
+				"h": 157
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "7.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 83,
+						"h": 78
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 3,
+						"w": 81,
+						"h": 75
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 81,
+						"h": 75
+					}
+				},
+				{
+					"filename": "6.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 83,
+						"h": 78
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 3,
+						"w": 80,
+						"h": 75
+					},
+					"frame": {
+						"x": 84,
+						"y": 1,
+						"w": 80,
+						"h": 75
+					}
+				},
+				{
+					"filename": "1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 83,
+						"h": 78
+					},
+					"spriteSourceSize": {
+						"x": 6,
+						"y": 4,
+						"w": 69,
+						"h": 74
+					},
+					"frame": {
+						"x": 166,
+						"y": 1,
+						"w": 69,
+						"h": 74
+					}
+				},
+				{
+					"filename": "2.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 83,
+						"h": 78
+					},
+					"spriteSourceSize": {
+						"x": 6,
+						"y": 2,
+						"w": 60,
+						"h": 76
+					},
+					"frame": {
+						"x": 237,
+						"y": 1,
+						"w": 60,
+						"h": 76
+					}
+				},
+				{
+					"filename": "3.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 83,
+						"h": 78
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 1,
+						"w": 55,
+						"h": 77
+					},
+					"frame": {
+						"x": 166,
+						"y": 77,
+						"w": 55,
+						"h": 77
+					}
+				},
+				{
+					"filename": "4.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 83,
+						"h": 78
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 50,
+						"h": 78
+					},
+					"frame": {
+						"x": 1,
+						"y": 78,
+						"w": 50,
+						"h": 78
+					}
+				},
+				{
+					"filename": "5.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 83,
+						"h": 78
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 0,
+						"w": 48,
+						"h": 78
+					},
+					"frame": {
+						"x": 53,
+						"y": 78,
+						"w": 48,
+						"h": 78
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://free-tex-packer.com",
+		"version": "0.6.7"
+	}
+}

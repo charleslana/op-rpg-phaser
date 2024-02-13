@@ -1,5 +1,12 @@
-import { aokijiAttackMelee, aokijiIdle, aokijiRun, pirateIdle } from './assetKeys';
 import { ICharacterAnimation } from '../interface/ICharacterAnimation';
+import {
+  aokijiAttackMelee,
+  aokijiAttackRanged,
+  aokijiAttackRangedObject,
+  aokijiIdle,
+  aokijiRun,
+  pirateIdle,
+} from './assetKeys';
 
 export const characterAokiji: ICharacterAnimation = {
   scaleX: 2,
@@ -47,6 +54,36 @@ export const characterAokiji: ICharacterAnimation = {
     ],
     frameRate: 10,
     frameRateStart: 10,
+  },
+  attackRanged: {
+    isInitObject: true,
+    key: aokijiAttackRanged,
+    frames: [
+      { key: aokijiAttackRanged, frame: '1.png' },
+      { key: aokijiAttackRanged, frame: '2.png' },
+      { key: aokijiAttackRanged, frame: '3.png' },
+      { key: aokijiAttackRanged, frame: '4.png' },
+      { key: aokijiAttackRanged, frame: '5.png' },
+      { key: aokijiAttackRanged, frame: '6.png' },
+      { key: aokijiAttackRanged, frame: '7.png' },
+    ],
+    frameRate: 7,
+    frameRateStart: 7,
+  },
+  attackRangedObject: {
+    positionY: -60,
+    key: aokijiAttackRangedObject,
+    frames: [
+      { key: aokijiAttackRangedObject, frame: 'aokiji_4000-0.png' },
+      { key: aokijiAttackRangedObject, frame: 'aokiji_4000-1.png' },
+      { key: aokijiAttackRangedObject, frame: 'aokiji_4000-2.png' },
+      { key: aokijiAttackRangedObject, frame: 'aokiji_4000-3.png' },
+      { key: aokijiAttackRangedObject, frame: 'aokiji_4000-4.png' },
+      { key: aokijiAttackRangedObject, frame: 'aokiji_4000-5.png' },
+      { key: aokijiAttackRangedObject, frame: 'aokiji_4000-6.png' },
+    ],
+    frameRate: 7,
+    frameRateStart: 7,
   },
 };
 

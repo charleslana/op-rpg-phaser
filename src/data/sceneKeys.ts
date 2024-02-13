@@ -1,3 +1,3 @@
-export const preloadSceneKey = 'PreloadScene';
-export const homeSceneKey = 'HomeScene';
-export const battleSceneKey = 'BattleScene';
+export const preloadSceneKey = 'preloadScene';
+export const homeSceneKey = 'homeScene';
+export const battleSceneKey = 'battleScene';

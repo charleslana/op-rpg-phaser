@@ -2,6 +2,8 @@ import * as Phaser from 'phaser';
 import { homeSceneKey, preloadSceneKey } from '../data/sceneKeys';
 import {
   aokijiAttackMelee,
+  aokijiAttackRanged,
+  aokijiAttackRangedObject,
   aokijiIdle,
   aokijiRun,
   battleBackground1,
@@ -27,8 +29,6 @@ export class PreloadScene extends Phaser.Scene {
     this.setupLoadEvents();
     this.loadAssets();
   }
-
-  create(): void {}
 
   private createProgressBar(): void {
     this.progressBar = this.add.graphics();
@@ -120,6 +120,11 @@ export class PreloadScene extends Phaser.Scene {
 
   private loadAssets(): void {
     this.load.image(battleBackground1, './assets/images/battle-bg/1.png');
+    this.loadAokiji();
+    this.loadPirate();
+  }
+
+  private loadAokiji(): void {
     this.load.atlas(
       aokijiIdle,
       './assets/images/characters/Aokiji/idle.png',
@@ -135,6 +140,19 @@ export class PreloadScene extends Phaser.Scene {
       './assets/images/characters/Aokiji/attack_melee.png',
       './assets/images/characters/Aokiji/attack_melee.json'
     );
+    this.load.atlas(
+      aokijiAttackRanged,
+      './assets/images/characters/Aokiji/attack_ranged.png',
+      './assets/images/characters/Aokiji/attack_ranged.json'
+    );
+    this.load.atlas(
+      aokijiAttackRangedObject,
+      './assets/images/characters/Aokiji/attack_ranged_object.png',
+      './assets/images/characters/Aokiji/attack_ranged_object.json'
+    );
+  }
+
+  private loadPirate(): void {
     this.load.atlas(
       pirateIdle,
       './assets/images/characters/pirate/idle.png',
