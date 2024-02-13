@@ -1,7 +1,8 @@
 import * as Phaser from 'phaser';
-import { battleBackground1 } from '../data/asset-keys';
-import { battleSceneKey, homeSceneKey } from '../data/scene-keys';
+import { battleBackground1 } from '../data/assetKeys';
+import { battleSceneKey, homeSceneKey } from '../data/sceneKeys';
 import { Character } from '../actor/Character';
+import { getSpeed, saveSpeed } from '../utils/localStorageUtils';
 
 export class BattleScene extends Phaser.Scene {
   constructor() {
@@ -52,6 +53,9 @@ export class BattleScene extends Phaser.Scene {
     this.input.keyboard!.on('keydown-THREE', () => {
       this.player.changeAttackMeleeAnimation(this.speed);
     });
+    this.input.keyboard!.on('keydown-R', () => {
+      this.scene.restart();
+    });
   }
 
   private loadPlayer(): void {
@@ -72,11 +76,13 @@ export class BattleScene extends Phaser.Scene {
 
   private createPlayer(): void {
     this.player.createCharacter({ characterId: 1, slot: 1 });
+    this.players = [];
     this.players.push(this.player);
   }
 
   private createEnemy(): void {
     this.enemy.createCharacter({ characterId: 2, slot: 2, isFlip: true });
+    this.enemies = [];
     this.enemies.push(this.enemy);
   }
 
@@ -87,6 +93,7 @@ export class BattleScene extends Phaser.Scene {
   }
 
   private moveToEnemy(): void {
+    const dodge = false;
     this.player.statusBar.hide();
     this.player.changeRunAnimation(this.speed);
     const destinationX = this.enemy.x + this.enemy.width * 2;
@@ -99,9 +106,14 @@ export class BattleScene extends Phaser.Scene {
         const duration = this.player.changeAttackMeleeAnimation(this.speed);
         this.player.sprite.setDepth(2);
         this.time.delayedCall(duration / this.speed, () => {
-          this.enemy.blinkSprite(this.speed);
-          this.enemy.statusBar.updateHPWithAnimation(50, 200, this.speed);
-          this.enemy.damage.changeTextAndAnimate('-75', this.speed);
+          if (!dodge) {
+            this.enemy.blinkSprite(this.speed);
+            this.enemy.statusBar.updateHPWithAnimation(50, 200, this.speed);
+            this.enemy.damage.changeDamageText('-75', this.speed);
+            this.enemy.damage.enableCriticalText(this.speed);
+          } else {
+            this.enemy.damage.enableDodgeText(this.speed);
+          }
           this.player.changeRunAnimation(this.speed);
           this.player.sprite.setFlipX(true);
           this.playerReturnToStartPosition();
@@ -148,6 +160,10 @@ export class BattleScene extends Phaser.Scene {
     button.on(Phaser.Input.Events.POINTER_DOWN, () => {
       this.changeSpeed(buttonText);
     });
+    if (getSpeed() != null && Number(getSpeed()) >= 1 && Number(getSpeed()) <= 2) {
+      this.speed = +getSpeed()! - 0.5;
+      this.changeSpeed(buttonText);
+    }
   }
 
   private changeSpeed(buttonText: Phaser.GameObjects.Text): void {
@@ -158,6 +174,7 @@ export class BattleScene extends Phaser.Scene {
     buttonText.text = `${this.speed}x`;
     this.player.updateAnimationSpeed(this.speed);
     this.enemy.updateAnimationSpeed(this.speed);
+    saveSpeed(this.speed.toString());
   }
 
   private createSlots(): void {

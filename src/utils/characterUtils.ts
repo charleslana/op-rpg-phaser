@@ -1,4 +1,4 @@
-import { characterAokiji, characterPirate } from '../data/characters-animation';
+import { characterAokiji, characterPirate } from '../data/charactersAnimation';
 import { ICharacterAnimation } from '../interface/ICharacterAnimation';
 
 export function getCharacterAnimation(characterId: number): ICharacterAnimation {

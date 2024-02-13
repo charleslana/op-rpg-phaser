@@ -1,12 +1,12 @@
 import * as Phaser from 'phaser';
-import { homeSceneKey, preloadSceneKey } from '../data/scene-keys';
+import { homeSceneKey, preloadSceneKey } from '../data/sceneKeys';
 import {
   aokijiAttackMelee,
   aokijiIdle,
   aokijiRun,
   battleBackground1,
   pirateIdle,
-} from '../data/asset-keys';
+} from '../data/assetKeys';
 
 export class PreloadScene extends Phaser.Scene {
   private progressBar: Phaser.GameObjects.Graphics;

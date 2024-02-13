@@ -1,6 +1,6 @@
 import * as Phaser from 'phaser';
 import { Damage } from '../components/Damage';
-import { getCharacterAnimation } from '../utils/character-utils';
+import { getCharacterAnimation } from '../utils/characterUtils';
 import { IAnimation } from '../interface/IAnimation';
 import { IBattleCharacter } from '../interface/IBattleCharacter';
 import { ICharacterAnimation } from '../interface/ICharacterAnimation';

@@ -1,4 +1,4 @@
-import { aokijiAttackMelee, aokijiIdle, aokijiRun, pirateIdle } from './asset-keys';
+import { aokijiAttackMelee, aokijiIdle, aokijiRun, pirateIdle } from './assetKeys';
 import { ICharacterAnimation } from '../interface/ICharacterAnimation';
 
 export const characterAokiji: ICharacterAnimation = {

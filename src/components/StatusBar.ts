@@ -19,7 +19,7 @@ export class StatusBar {
     );
     this.statusBarContainer.setDepth(1);
     const containerBackground = this.scene.add.graphics();
-    containerBackground.fillStyle(0x808080, 1);
+    containerBackground.fillStyle(0x808080, 0);
     containerBackground.fillRect(0, 0, this.sprite.displayWidth, 30);
     this.statusBarContainer.add(containerBackground);
     this.createMPBar();

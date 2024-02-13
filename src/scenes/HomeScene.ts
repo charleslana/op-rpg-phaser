@@ -1,5 +1,5 @@
 import * as Phaser from 'phaser';
-import { battleSceneKey, homeSceneKey } from '../data/scene-keys';
+import { battleSceneKey, homeSceneKey } from '../data/sceneKeys';
 
 export class HomeScene extends Phaser.Scene {
   constructor() {
@@ -33,6 +33,9 @@ export class HomeScene extends Phaser.Scene {
       })
       .setInteractive({ cursor: 'pointer' })
       .on(Phaser.Input.Events.POINTER_DOWN, () => this.goToBattleScene());
+    this.input.keyboard!.on('keydown-A', () => {
+      this.goToBattleScene();
+    });
   }
 
   private goToBattleScene(): void {
